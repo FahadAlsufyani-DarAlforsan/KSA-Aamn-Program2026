@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B3D28">
+<title>قسم الدبلوما: وعي سيبراني آمن | Diploma Section: Cyber Awareness</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Cairo:wght@600;700;800&family=Tajawal:wght@400;500;700&display=swap">
+<style>
+/* نموذج أولي لموقع قسم الدبلوما: هوية المبادرة الأم (أخضر داكن + نيون خافت) مع لمسة من لوني شعار القسم (بنفسجي وأزرق) */
+:root {
+  color-scheme: light;
+  --bg: #F2F5F1; --surface: #FFFFFF; --fg: #10231A; --muted: #485D51;
+  --accent: #0B5D3B; --accent-soft: #DCEBE1; --red: #C8102E; --line: #C9D6CD;
+  --hero-bg: #0B3D28; --hero-fg: #F2F7F3; --band-bg: #FFFFFF;
+  --neon: #00B86B; --neon-glow: rgba(0,184,107,.45);
+  --good: #0B6B3F; --good-soft: #DDF0E4; --bad: #A4162D; --bad-soft: #F8E1E4;
+  /* ألوان مقتبسة من شعار قسم الدبلوما */
+  --dp-purple: #6A2AA0; --dp-purple-soft: #EDE3F7; --dp-blue: #1F6DBE; --dp-blue-soft: #E1EDF9; --dp-gray: #6B7B7B;
+  --dp-grad: linear-gradient(90deg, #6A2AA0, #1F6DBE);
+  --font-display: 'Cairo', system-ui, -apple-system, 'Segoe UI', 'Noto Sans Arabic', 'Geeza Pro', Tahoma, sans-serif;
+  --font-body: 'Tajawal', system-ui, -apple-system, 'Segoe UI', 'Noto Sans Arabic', 'Geeza Pro', Tahoma, sans-serif;
+  --font-verse: 'Amiri Quran', 'Amiri', 'Scheherazade New', 'Geeza Pro', 'Traditional Arabic', serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #08170F; --surface: #0F2418; --fg: #E7F0EA; --muted: #9DB3A5; --accent: #5CC28A; --accent-soft: #143323;
+    --red: #FF4D5E; --line: #23402F; --hero-bg: #0A2819; --neon: #39FFA0; --neon-glow: rgba(57,255,160,.55);
+    --good: #67D399; --good-soft: #123924; --bad: #FF8593; --bad-soft: #3A1620;
+    --dp-purple: #C3A0F0; --dp-purple-soft: #2A1A40; --dp-blue: #7DB8F5; --dp-blue-soft: #14283F; --dp-gray: #A9B8B8;
+    --dp-grad: linear-gradient(90deg, #9B63D6, #4C97E6);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #08170F; --surface: #0F2418; --fg: #E7F0EA; --muted: #9DB3A5; --accent: #5CC28A; --accent-soft: #143323;
+  --red: #FF4D5E; --line: #23402F; --hero-bg: #0A2819; --neon: #39FFA0; --neon-glow: rgba(57,255,160,.55);
+  --good: #67D399; --good-soft: #123924; --bad: #FF8593; --bad-soft: #3A1620;
+  --dp-purple: #C3A0F0; --dp-purple-soft: #2A1A40; --dp-blue: #7DB8F5; --dp-blue-soft: #14283F; --dp-gray: #A9B8B8;
+  --dp-grad: linear-gradient(90deg, #9B63D6, #4C97E6);
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom); }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 18px; line-height: 1.85;
+  direction: rtl; text-align: right; overflow-wrap: break-word; -webkit-font-smoothing: antialiased; }
+[hidden] { display: none !important; }
+img { max-width: 100%; }
+a { color: var(--dp-blue); }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.5; margin: 0; text-wrap: balance; }
+h2 { font-size: clamp(1.5rem, 5vw, 2rem); font-weight: 800; margin-top: 4px; }
+p { margin: 0; }
+/* English companion lines: smaller and quieter than the Arabic, so the page reads Arabic first without looking crowded */
+.en { display: block; direction: ltr; text-align: inherit; font-family: var(--font-body); font-size: .8em; font-weight: 400; line-height: 1.55; color: var(--muted); margin-top: 2px; letter-spacing: .003em; }
+.hero .en { color: rgba(242,247,243,.8); }
+h2 .en { font-size: .52em; font-weight: 600; margin-top: 0; font-family: var(--font-display); }
+.title .en { font-size: .46em; font-weight: 600; line-height: 1.45; margin-top: 8px; }
+.inline-en { display: inline; direction: ltr; font-size: .78em; color: var(--muted); font-weight: 500; }
+.step small .inline-en { font-size: 1em; }
+.reset-btn { flex-direction: column; justify-content: center; gap: 0; line-height: 1.35; padding-block: 4px; }
+.reset-btn .rb-ar { display: inline-flex; gap: 8px; align-items: center; }
+.reset-btn .en { color: #fff; opacity: .92; font-size: .72rem; text-align: center; margin-top: 0; }
+.wrap { width: 100%; max-width: 760px; margin-inline: auto; padding-inline: max(16px, env(safe-area-inset-left), env(safe-area-inset-right)); }
+
+/* الشريط العلوي */
+.topbar { position: sticky; top: 0; z-index: 30; background: var(--hero-bg); border-bottom: 1px solid rgba(255,255,255,.12); padding-block: 10px; }
+.topbar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.topbar-hint { color: rgba(242,247,243,.85); font-size: .85rem; }
+.reset-btn { display: inline-flex; align-items: center; gap: 8px; min-height: 46px; padding: 0 22px; border-radius: 999px; border: 2px solid #FF8593;
+  background: #C8102E; color: #fff; font: inherit; font-family: var(--font-display); font-weight: 800; font-size: 1.05rem; cursor: pointer; }
+.reset-btn:focus-visible, .choice:focus-visible, .act:focus-visible { outline: 3px solid var(--dp-blue); outline-offset: 2px; }
+@media (max-width: 480px) { .topbar-hint { display: none; } .topbar .wrap { justify-content: center; } }
+
+/* شريط الشعارات والهوية */
+.brand-band { background: var(--band-bg); border-bottom: 5px solid transparent; border-image: var(--dp-grad) 1; padding-block: 12px; }
+.brand-row { display: flex; align-items: center; justify-content: center; gap: clamp(16px, 5vw, 40px); }
+.brand-row img { height: clamp(64px, 14vw, 96px); width: auto; display: block; }
+
+/* الواجهة */
+.hero { background: var(--hero-bg); color: var(--hero-fg); padding-block: 34px 38px; text-align: center; }
+.eyebrow { display: inline-block; font-family: var(--font-display); font-weight: 700; letter-spacing: .02em; padding: 2px 16px; border-radius: 999px; background: var(--dp-grad); color: #fff; }
+.title-block { position: relative; isolation: isolate; margin-top: 12px; }
+.emblem-bg { position: absolute; z-index: -1; top: 50%; left: 50%; transform: translate(-50%, -50%); height: clamp(200px, 56vw, 300px); width: auto; max-width: none; opacity: .17; pointer-events: none; }
+.title { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.6rem, 6vw, 2.5rem); line-height: 1.6; }
+.years { margin-top: 8px; font-weight: 600; color: rgba(242,247,243,.88); }
+.years .sep { opacity: .55; padding-inline: .7em; }
+.hero-rule { width: 140px; height: 4px; border-radius: 4px; background: var(--dp-grad); margin: 18px auto; }
+.verse { font-family: var(--font-verse); font-size: clamp(1.4rem, 5vw, 2rem); line-height: 2; }
+.occasion { margin: 12px auto 0; max-width: 34em; font-weight: 600; line-height: 1.9; color: rgba(242,247,243,.95); }
+.occasion .en { font-weight: 400; }
+.occasion a { color: #9BC7F5; }
+.tag { color: #9BE7C0; font-family: var(--font-display); }
+.date-chip { display: inline-flex; align-items: center; gap: 10px; margin: 14px auto 0; padding: 4px 18px; border-radius: 999px; background: var(--dp-grad); color: #fff; font-family: var(--font-display); font-weight: 800; font-size: 1.05rem; line-height: 1.6; box-shadow: 0 0 14px rgba(155,99,214,.35); }
+.date-chip .dc-en { font-weight: 600; font-size: .85em; opacity: .92; padding-inline-start: 10px; border-inline-start: 1px solid rgba(255,255,255,.55); }
+.credits { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 16px; text-align: center; }
+.credit { padding: 8px 12px; border: 1px solid rgba(242,247,243,.28); border-top: 3px solid transparent; border-image: var(--dp-grad) 1; background: rgba(255,255,255,.05); }
+.credit b { font-family: var(--font-display); font-size: .98rem; font-weight: 700; line-height: 1.5; display: block; }
+.credit .en { font-size: .78rem; margin-top: 1px; }
+.verse-en { margin: 0; font-size: .95rem; color: rgba(242,247,243,.8); font-style: italic; }
+.lede { max-width: 36em; margin: 8px auto 0; color: rgba(242,247,243,.92); }
+
+/* اقتباس برنامج آمن */
+.quote { margin: 22px 0 0; padding: 16px 18px; border: 1px solid var(--line); border-inline-start: 6px solid var(--dp-purple); border-radius: 12px; background: var(--surface); }
+.quote-label { font-family: var(--font-display); font-weight: 700; color: var(--dp-purple); font-size: .9rem; }
+.quote blockquote { margin: 6px 0 0; font-size: 1.1rem; line-height: 2; }
+.quote cite { display: block; margin-top: 8px; font-style: normal; font-size: .9rem; color: var(--muted); }
+.quote .disclaimer { margin-top: 10px; padding: 8px 12px; border-radius: 8px; background: var(--dp-blue-soft); font-size: .92rem; }
+
+/* شعار: أتوقف أتحقق أبلّغ */
+.stop-band { background: var(--surface); border-block: 1px solid var(--line); padding-block: 22px; margin-top: 22px; text-align: center; }
+.stop-title { font-weight: 800; font-size: clamp(1.5rem, 5.5vw, 2.2rem); color: var(--accent); text-shadow: 0 0 8px var(--neon-glow), 0 0 18px var(--neon-glow); }
+.three { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; margin-top: 14px; }
+.three > div { border-radius: 14px; padding: 12px 14px; border: 2px solid var(--dp-purple); background: var(--dp-purple-soft); }
+.three > div:nth-child(2) { border-color: var(--dp-blue); background: var(--dp-blue-soft); }
+.three > div:nth-child(3) { border-color: var(--accent); background: var(--accent-soft); }
+.three b { display: block; font-family: var(--font-display); font-size: 1.3rem; }
+.three small { display: block; color: var(--muted); line-height: 1.7; }
+
+/* التقدم */
+.progress { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; padding-block: 22px 6px; }
+.step { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; }
+.step small { display: block; color: var(--muted); font-size: .8rem; }
+.step b { font-weight: 700; font-size: .95rem; line-height: 1.5; }
+.step[data-done="true"] { border-color: var(--good); background: var(--good-soft); }
+.step[data-done="true"] small::after { content: " · تمّت"; color: var(--good); font-weight: 700; }
+
+/* المهام */
+main section { position: relative; isolation: isolate; margin-top: 34px; }
+/* شعار النخلة والسيفين بخطوط باهتة خلف كل سؤال */
+.scenario, .acts { position: relative; isolation: isolate; }
+.scenario::before, .acts::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: var(--dp-purple); opacity: .07;
+  -webkit-mask: url("img/emblem-outline.png") center / auto min(260px, 85%) no-repeat; mask: url("img/emblem-outline.png") center / auto min(260px, 85%) no-repeat; }
+.mission-label { font-size: .85rem; font-weight: 700; color: var(--dp-purple); letter-spacing: .03em; }
+.intro { color: var(--muted); margin-top: 6px; max-width: 40em; }
+.scenario { margin-top: 18px; padding-top: 14px; border-top: 1px dashed var(--line); }
+.num { display: inline-block; font-size: .82rem; font-weight: 700; color: var(--dp-blue); }
+.msg { margin-top: 6px; padding: 12px 14px; background: var(--dp-blue-soft); border: 1px solid var(--dp-blue); border-radius: 18px 18px 4px 18px; }
+.msg .src { display: inline-block; font-size: .78rem; font-weight: 700; background: var(--dp-gray); color: #fff; border-radius: 6px; padding: 0 8px; margin-bottom: 4px; }
+.msg q { display: block; font-weight: 700; quotes: none; }
+.msg q .en { font-weight: 400; }
+.choice .tx { flex: 1; min-width: 0; }
+.feedback .en, .result .en { color: inherit; opacity: .85; }
+.sum-list li > span { min-width: 0; }
+.code { display: block; margin-top: 8px; direction: ltr; text-align: left; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .92rem; background: rgba(0,0,0,.08); border-radius: 6px; padding: 4px 8px; overflow-wrap: anywhere; }
+.prompt { margin-top: 10px; font-weight: 700; }
+.choices { display: grid; gap: 8px; margin-top: 8px; }
+.choice { position: relative; display: flex; align-items: center; gap: 12px; width: 100%; text-align: right; min-height: 48px; padding: 10px 14px; background: var(--surface);
+  color: var(--fg); border: 1px solid var(--line); border-radius: 10px; font: inherit; line-height: 1.7; cursor: pointer; transition: box-shadow .2s, border-color .2s; }
+.choice::before { content: ""; flex: none; width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--muted); }
+@media (hover: hover) { .choice:hover:not(:disabled) { border-color: var(--neon); box-shadow: 0 0 0 1px var(--neon), 0 0 10px var(--neon-glow), 0 0 24px var(--neon-glow); } }
+.choice:disabled { cursor: default; }
+.choice.is-good { border: 2px solid var(--good); background: var(--good-soft); font-weight: 700; }
+.choice.is-good::before { background: var(--good); border-color: var(--good); }
+.choice.is-bad { border: 2px dashed var(--bad); background: var(--bad-soft); }
+.choice.is-dim { opacity: .6; }
+.feedback { margin-top: 10px; padding: 10px 14px; border-radius: 10px; background: var(--accent-soft); border: 1px solid var(--accent); }
+.result { margin-top: 20px; padding: 12px 16px; border: 2px solid var(--dp-purple); border-radius: 12px; background: var(--dp-purple-soft); }
+.result b { font-family: var(--font-display); font-size: 1.1rem; }
+.link-btn { background: none; border: none; color: var(--dp-blue); text-decoration: underline; cursor: pointer; padding: 10px 0; font: inherit; font-size: .95rem; }
+.svcs { display: grid; gap: 10px; margin-top: 16px; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+.svc { background: var(--surface); border: 1px solid var(--line); border-top: 4px solid var(--dp-blue); border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; }
+.svc b { font-family: var(--font-display); }
+.svc small { color: var(--muted); line-height: 1.7; }
+.acts { display: grid; gap: 8px; margin-top: 12px; }
+.fineprint { margin-top: 10px; font-size: .85rem; color: var(--muted); }
+
+/* الملخص */
+.summary { padding: 18px; border: 2px solid var(--accent); border-radius: 16px; background: var(--accent-soft); box-shadow: 0 0 0 1px var(--neon), 0 0 18px var(--neon-glow); }
+.sum-list { list-style: none; margin: 10px 0; padding: 0; display: grid; gap: 8px; }
+.sum-list li { display: flex; justify-content: space-between; gap: 12px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+.sum-list li b { color: var(--accent); white-space: nowrap; }
+.sum-pledge { font-weight: 700; margin: 8px 0; }
+/* معرض ملصقات آمن */
+.carousel { position: relative; margin-top: 14px; border-radius: 12px; overflow: hidden; background: var(--hero-bg); height: clamp(380px, 70vh, 640px); height: clamp(380px, 70dvh, 640px); touch-action: pan-y; }
+.slide { position: absolute; inset: 0; opacity: 0; visibility: hidden; transition: opacity .7s ease, visibility 0s linear .7s; }
+.slide.is-active { opacity: 1; visibility: visible; transition: opacity .7s ease; }
+.slide img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; }
+.slide .bg { object-fit: cover; filter: blur(28px) brightness(.55); transform: scale(1.15); }
+.slide .fg { object-fit: contain; }
+.c-btn { position: absolute; top: 50%; transform: translateY(-50%); z-index: 3; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center;
+  border: 1px solid rgba(255,255,255,.55); background: rgba(6,20,12,.55); color: #fff; font-size: 1.6rem; line-height: 1; cursor: pointer; padding: 0 0 4px; }
+@media (hover: hover) { .c-btn:hover { background: rgba(6,20,12,.8); } }
+.c-prev { right: 10px; } .c-next { left: 10px; }
+.c-bar { position: absolute; inset-inline: 0; bottom: 0; z-index: 3; display: flex; align-items: center; gap: 12px; padding: 26px 14px 12px; background: linear-gradient(to top, rgba(0,0,0,.65), rgba(0,0,0,0)); color: #fff; }
+.c-dots { display: flex; gap: 8px; flex: 1; min-width: 0; flex-wrap: wrap; }
+.c-dot { position: relative; width: 10px; height: 10px; border-radius: 50%; border: 1px solid #fff; background: transparent; padding: 0; cursor: pointer; }
+.c-dot::after { content: ""; position: absolute; inset: -14px -4px; }
+.c-dot[aria-current="true"] { background: #fff; width: 26px; border-radius: 6px; }
+.c-count { font-size: .85rem; font-variant-numeric: tabular-nums; }
+.c-pause { background: none; border: 1px solid rgba(255,255,255,.6); color: #fff; border-radius: 999px; padding: 0 14px; min-height: 40px; font: inherit; font-size: .82rem; cursor: pointer; }
+.c-btn:focus-visible, .c-pause:focus-visible, .c-dot:focus-visible, .carousel:focus-visible { outline: 3px solid var(--dp-blue); outline-offset: 2px; }
+.gallery .intro { margin-bottom: 4px; }
+.track-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-top: 14px; }
+.track { background: var(--surface); border: 1px solid var(--line); border-top: 4px solid var(--dp-purple); border-radius: 12px; padding: 14px 16px; }
+.track:nth-child(2) { border-top-color: var(--dp-blue); }
+.track b { display: block; font-family: var(--font-display); font-size: 1.15rem; color: var(--dp-purple); }
+.track:nth-child(2) b { color: var(--dp-blue); }
+.track p { margin-top: 6px; }
+.gal-note { margin-top: 8px; }
+.sum-list li b { text-align: end; }
+.sum-tags span { display: block; font-family: var(--font-display); font-weight: 800; color: var(--accent); }
+/* التذييل: شريط داكن بشعارات بيضاء وعلامة مائية */
+.foot { text-align: center; font-size: .95rem; position: relative; isolation: isolate; overflow: hidden; margin-top: 40px; background: var(--hero-bg); color: var(--hero-fg); padding: 34px 16px 46px; }
+.foot::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: #fff; opacity: .1;
+  -webkit-mask: url("img/emblem-outline.png") center / auto min(300px, 90%) no-repeat; mask: url("img/emblem-outline.png") center / auto min(300px, 90%) no-repeat; }
+.foot-logos { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 18px clamp(22px, 6vw, 56px); }
+.foot-logos img { height: clamp(64px, 14vw, 88px); width: auto; display: block; }
+.nca-chip { display: inline-flex; align-items: center; background: #fff; border-radius: 10px; padding: 8px 14px; }
+.foot-logos .nca-chip img { height: clamp(40px, 9vw, 54px); }
+.foot-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 12px; margin: 20px 0 0; }
+.foot-tags span { font-family: var(--font-display); font-weight: 800; font-size: 1.05rem; padding: 2px 16px; border: 1px solid rgba(242,247,243,.45); border-radius: 999px; color: #fff; background: rgba(255,255,255,.07); }
+.foot-credit { font-size: .82rem; opacity: .9; }
+.foot .en { color: rgba(242,247,243,.78); }
+.foot p { margin-top: 10px; }
+.foot-date { margin-top: 18px; }
+.foot-tags + .date-chip + b { margin-top: 18px; }
+.foot b { display: block; font-family: var(--font-display); font-size: 1.15rem; color: #9BE7C0; }
+.foot-tags + b { margin-top: 18px; }
+.toast { position: fixed; z-index: 40; inset-inline: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); display: flex; justify-content: center; pointer-events: none; }
+.toast-box { pointer-events: auto; background: #10231A; color: #fff; border-radius: 12px; padding: 10px 16px; border: 1px solid var(--neon); box-shadow: 0 0 14px var(--neon-glow); }
+@media (min-width: 700px) { body { font-size: 19px; } .wrap { max-width: 900px; } }
+@media (forced-colors: active) { .choice, .step, .svc, .msg, .quote, .result, .summary { border: 1px solid CanvasText; } .choice.is-good { border-width: 3px; } }
+@media (prefers-reduced-motion: reduce) { .choice { transition: none; } }
+</style>
+</head>
+<body>
+<div class="topbar"><div class="wrap">
+  <span class="topbar-hint">ضغطة واحدة تمسح الاختيارات وتبدّل الأسئلة لبدء مشاركة جديدة<span class="en" lang="en" dir="ltr">One tap clears your answers and swaps the questions for a new participation</span></span>
+  <button class="reset-btn" id="reset-btn" type="button"><span class="rb-ar"><span aria-hidden="true">↻</span> مشاركة جديدة</span><span class="en" lang="en">New participation</span></button>
+</div></div>
+<div class="toast" id="toast" hidden role="status" aria-live="polite"><div class="toast-box" id="toast-text"></div></div>
+
+<div class="brand-band"><div class="wrap brand-row">
+  <img src="img/daf.png" alt="شعار مدارس دار الفرسان: نفكر، نتأمل، نتعلم">
+  <img src="img/diploma-logo.png" alt="شعار قسم الدبلوما (Diploma Section logo)">
+</div></div>
+
+<header class="hero"><div class="wrap">
+  <span class="eyebrow">قسم الدبلوما · Diploma Section</span>
+  <div class="title-block">
+    <img class="emblem-bg" src="img/emblem-outline.png" alt="" aria-hidden="true">
+    <h1 class="title">مبادرة قسم الدبلوما<br>للوعي السيبراني والفكري الوطني<span class="en" lang="en" dir="ltr">Diploma Section Initiative for Cyber and National Intellectual Awareness</span></h1>
+    <p class="occasion">تزامنًا مع «الحملة الوطنية للتوعية بالأمن السيبراني» في «الشهر العالمي للتوعية بالأمن السيبراني» (أكتوبر من كل عام)، التي أُطلقت <a href="https://sabq.org/article/0ya76yx" target="_blank" rel="noopener">نسختها السادسة</a> في 1 أكتوبر 2026، وتفعيل تحويل العملية التعليمية إلى <b class="tag">#التعليم_عن_بعد</b><span class="en" lang="en" dir="ltr">In conjunction with the National Cybersecurity Awareness Campaign during Global Cybersecurity Awareness Month (every October), whose <a href="https://sabq.org/article/0ya76yx" target="_blank" rel="noopener">sixth edition</a> launched on 1 October 2026, and activating the shift of the educational process to remote learning (<bdi>#التعليم_عن_بعد</bdi>).</span></p>
+    <p class="date-chip"><span class="dc-ar">نوفمبر <bdi dir="ltr">2026</bdi></span><span class="dc-en" lang="en" dir="ltr">November 2026</span></p>
+    <p class="years"><span dir="ltr">1448 - 1449</span> هـ <span class="sep">|</span> <span dir="ltr">2026 - 2027</span> م<span class="en" lang="en" dir="ltr">1448–1449 AH · 2026–2027 CE</span></p>
+    <div class="credits" role="list" aria-label="الإشراف والتنفيذ (Supervision and implementation)">
+      <div class="credit" role="listitem"><b>الإشراف الأكاديمي للقسم</b><span class="en" lang="en" dir="ltr">Academic supervision of the section</span></div>
+      <div class="credit" role="listitem"><b>وكيل شؤون الطلاب للقسم</b><span class="en" lang="en" dir="ltr">Student affairs deputy of the section</span></div>
+      <div class="credit" role="listitem"><b>تنفيذ شعبة علوم الحاسوب للقسم</b><span class="en" lang="en" dir="ltr">Implemented by the Computer Science division of the section</span></div>
+    </div>
+  </div>
+  <div class="hero-rule" aria-hidden="true"></div>
+  <p class="verse">﴿رَبِّ اجْعَلْ هَٰذَا الْبَلَدَ آمِنًا﴾</p>
+  <p class="verse-en" lang="en" dir="ltr">“My Lord, make this land secure.” (Quran 14:35)</p>
+  <p class="lede">أمن الوطن يبدأ من قراراتك الصغيرة على الشاشة: ما تضغطه، وما تصدقه، وما تعيد نشره.<span class="en" lang="en" dir="ltr">The nation’s security starts with your small decisions on screen: what you click, what you believe, and what you reshare.</span></p>
+</div></header>
+
+<main class="wrap">
+  <figure class="quote" style="margin-inline:0">
+    <div class="quote-label">اقتباس · Quote</div>
+    <blockquote>يُعد برنامج آمن للتوعية بالأمن السيبراني امتداداً للمبادرات الإستراتيجية التي تنفذها الهيئة الوطنية للأمن السيبراني على المستوى الوطني من أجل رفع مستوى الوعي بالأمن السيبراني لدى شرائح المجتمع كافة بما يُسهم في الوصول إلى فضاء سيبراني سعودي آمن…</blockquote>
+    <p class="en" lang="en" dir="ltr" style="margin-top:8px">Aamn is an extension of the strategic initiatives implemented by the National Cybersecurity Authority. The program aims to raise cybersecurity awareness across all segments of society, contributing to the development of a resilient, secure, and trusted Saudi cyberspace that enables growth and prosperity.</p>
+    <cite>المصدر: موقع الهيئة الوطنية للأمن السيبراني، <a href="https://nca.gov.sa/ar/aamn" target="_blank" rel="noopener">النسخة العربية</a> · <a href="https://nca.gov.sa/en/cyber-awareness/aamn/" target="_blank" rel="noopener">English page</a><span class="en" lang="en" dir="ltr">Source: National Cybersecurity Authority website, Arabic and English pages</span></cite>
+    <p class="disclaimer">هذه مبادرة مدرسية في قسم الدبلوما، وليست موقعًا رسميًّا ولا تابعة للهيئة الوطنية للأمن السيبراني. الاقتباس للتعريف بالبرنامج فقط.<span class="en" lang="en" dir="ltr">This is a school initiative of the Diploma Section. It is not an official site and is not affiliated with the National Cybersecurity Authority. The quote is for introducing the program only.</span></p>
+  </figure>
+    <section id="gallery" class="gallery" aria-label="ملصقات برنامج آمن (Aamn program posters)">
+    <h2>#وطن_آمن · #لا_تفتح_مجال<span class="en" lang="en" dir="ltr">Posters of the Aamn program</span></h2>
+    <p class="intro">ملصقات برنامج «آمن» للتوعية بالأمن السيبراني، تتحرك تلقائيًّا. اضغط السهمين للتنقل.<span class="en" lang="en" dir="ltr">Posters of the “Aamn” cybersecurity awareness program, moving automatically. Use the arrows to browse.</span></p>
+    <div class="carousel" id="carousel" role="region" aria-roledescription="carousel" aria-label="ملصقات آمن (Aamn posters)" tabindex="0">
+<div class="slide is-active"><img class="bg" src="img/n1.jpg" alt="" aria-hidden="true"><img class="fg" src="img/n1.jpg" alt="ملصق «آمن»: تحديث الأجهزة سدّ لثغراتها وتعزيز لحمايتها (Aamn poster: Updating devices closes their gaps and strengthens their protection)"></div>
+<div class="slide"><img class="bg" src="img/n2.jpg" alt="" aria-hidden="true"><img class="fg" src="img/n2.jpg" alt="ملصق «آمن»: لا تفتح كل أبوابك بمفتاح واحد: كلمة مرور قوية ومختلفة لكل حساب (Aamn poster: Don’t open all your doors with one key: a strong, different password for each account)" loading="lazy"></div>
+<div class="slide"><img class="bg" src="img/n3.jpg" alt="" aria-hidden="true"><img class="fg" src="img/n3.jpg" alt="ملصق «آمن»: وعيٌ يسبق التفاعل: تأكد من موثوقية الروابط والملفات ورموز الاستجابة السريعة عبر «تحقق» (Aamn poster: Awareness before interaction: verify links, files and QR codes with “Tahqaq”)" loading="lazy"></div>
+<div class="slide"><img class="bg" src="img/n4.jpg" alt="" aria-hidden="true"><img class="fg" src="img/n4.jpg" alt="ملصق «آمن»: الرابط خطوة والتحقق يسبقها عبر «تحقق» (Aamn poster: A link is a step, and verification comes before it, with “Tahqaq”)" loading="lazy"></div>
+<div class="slide"><img class="bg" src="img/n5.jpg" alt="" aria-hidden="true"><img class="fg" src="img/n5.jpg" alt="ملصق «آمن»: حفظًا لأمنك السيبراني: تحقق من موثوقية رموز الاستجابة السريعة (Aamn poster: To protect your cybersecurity: verify QR codes)" loading="lazy"></div>
+<div class="slide"><img class="bg" src="img/n6.jpg" alt="" aria-hidden="true"><img class="fg" src="img/n6.jpg" alt="ملصق «آمن»: تحقق قبل التجاوب مع رموز الاستجابة السريعة (QR) (Aamn poster: Verify before responding to QR codes)" loading="lazy"></div>
+<div class="slide"><img class="bg" src="img/n7.jpg" alt="" aria-hidden="true"><img class="fg" src="img/n7.jpg" alt="ملصق «آمن»: بإمكانك الآن التأكد من موثوقية الرابط أو الملف أو الرمز عبر «تحقق» (Aamn poster: You can now verify a link, file or code with “Tahqaq”)" loading="lazy"></div>
+<div class="slide"><img class="bg" src="img/n8.jpg" alt="" aria-hidden="true"><img class="fg" src="img/n8.jpg" alt="ملصق «آمن»: فحص الملفات ممارسة استباقية تعزز أمنك السيبراني (Aamn poster: Checking files is a proactive practice that strengthens your cybersecurity)" loading="lazy"></div>
+<div class="slide"><img class="bg" src="img/n9.jpg" alt="" aria-hidden="true"><img class="fg" src="img/n9.jpg" alt="ملصق «آمن»: فحص الملفات خطوة استباقية تعزز الأمان (Aamn poster: Checking files is a proactive step that strengthens safety)" loading="lazy"></div>
+<div class="slide"><img class="bg" src="img/n10.jpg" alt="" aria-hidden="true"><img class="fg" src="img/n10.jpg" alt="ملصق «آمن»: الرقابة الأبوية حماية للأطفال (Aamn poster: Parental controls protect children)" loading="lazy"></div>
+<div class="slide"><img class="bg" src="img/n11.jpg" alt="" aria-hidden="true"><img class="fg" src="img/n11.jpg" alt="ملصق «آمن»: أجهزة ذكية في المنزل تتطلب حماية مستمرة (Aamn poster: Smart devices at home need continuous protection)" loading="lazy"></div>
+      <button class="c-btn c-prev" id="c-prev" type="button" aria-label="الملصق السابق (Previous poster)">›</button>
+      <button class="c-btn c-next" id="c-next" type="button" aria-label="الملصق التالي (Next poster)">‹</button>
+      <div class="c-bar"><div class="c-dots" id="c-dots"></div><span class="c-count" id="c-count"></span><button class="c-pause" id="c-pause" type="button">إيقاف · Pause</button></div>
+    </div>
+    <p class="fineprint">المواد من برنامج «آمن» التابع للهيئة الوطنية للأمن السيبراني، وتُعرض هنا للتوعية. هذه الصفحة مدرسية وليست رسمية.<span class="en" lang="en" dir="ltr">Materials from the Aamn program of the National Cybersecurity Authority, shown here for awareness. This is a school page, not an official one.</span></p>
+  </section>
+  <section id="tracks" class="tracks" aria-label="مسارات برنامج آمن لطلاب المؤسسات التعليمية (Aamn program tracks for students)">
+    <h2>مسارات برنامج «آمن» لطلاب المؤسسات التعليمية<span class="en" lang="en" dir="ltr">Aamn program tracks for students in educational institutions</span></h2>
+    <p class="intro">بحسب موقع الهيئة الوطنية للأمن السيبراني، يقدّم البرنامج مسارين يخصان المؤسسات التعليمية.<span class="en" lang="en" dir="ltr">According to the National Cybersecurity Authority website, the program offers two tracks for educational institutions.</span></p>
+    <div class="track-grid">
+      <div class="track"><b>جلسات التوعية<span class="en" lang="en" dir="ltr">Awareness Sessions</span></b><p>جلسات توعية بالأمن السيبراني لطلاب المؤسسات التعليمية.<span class="en" lang="en" dir="ltr">Cybersecurity awareness sessions for students in educational institutions.</span></p></div>
+      <div class="track"><b>سفراء آمن<span class="en" lang="en" dir="ltr">Aamn Ambassadors</span></b><p>جلسات تعليمية ميدانية تغطي مؤسسات أكاديمية مختلفة في المملكة.<span class="en" lang="en" dir="ltr">On-site educational sessions covering various academic institutions across the Kingdom.</span></p></div>
+    </div>
+    <p class="fineprint">لطلب جلسة لقسمك، اطرح الفكرة على إدارة القسم لتتواصل مع الهيئة عبر قنواتها الرسمية.<span class="en" lang="en" dir="ltr">To request a session for your section, raise the idea with the section administration so it can contact the Authority through its official channels.</span><br><a href="https://nca.gov.sa/ar/aamn" target="_blank" rel="noopener">تفاصيل البرنامج في موقع الهيئة</a> · <a href="https://nca.gov.sa/en/cyber-awareness/aamn/" target="_blank" rel="noopener">Program details on the NCA site</a></p>
+  </section>
+
+</main>
+
+<section class="stop-band" aria-label="شعار المبادرة"><div class="wrap">
+  <h2 class="stop-title">قبل أن تضغط<span class="en" lang="en" dir="ltr">Before you click</span></h2>
+  <div class="three">
+    <div><b>أتوقف<span class="en" lang="en" dir="ltr">Stop</span></b><small>الاستعجال والإغراء والتهديد علامات احتيال.<span class="en" lang="en" dir="ltr">Urgency, temptation and threats are signs of a scam.</span></small></div>
+    <div><b>أتحقق<span class="en" lang="en" dir="ltr">Verify</span></b><small>من المصدر الرسمي ومن النطاق الحقيقي للرابط.<span class="en" lang="en" dir="ltr">Check the official source and the link’s real domain.</span></small></div>
+    <div><b>أبلّغ<span class="en" lang="en" dir="ltr">Report</span></b><small>الجهة المختصة أو معلمي بما يثير الشك.<span class="en" lang="en" dir="ltr">Tell the relevant authority or my teacher about anything suspicious.</span></small></div>
+  </div>
+</div></section>
+
+<main class="wrap">
+  <div class="progress" id="progress" aria-label="تقدمك في المهام (Your progress)">
+    <div class="step" data-done="false"><small>المهمة ١ من ٤<span class="inline-en" lang="en"> · Mission 1 of 4</span></small><b>أقرأ الخطر<span class="en" lang="en" dir="ltr">Read the risk</span></b></div>
+    <div class="step" data-done="false"><small>المهمة ٢ من ٤<span class="inline-en" lang="en"> · Mission 2 of 4</span></small><b>أتحقق قبل أن أفتح<span class="en" lang="en" dir="ltr">Verify before I open</span></b></div>
+    <div class="step" data-done="false"><small>المهمة ٣ من ٤<span class="inline-en" lang="en"> · Mission 3 of 4</span></small><b>أحمي بصمتي الرقمية<span class="en" lang="en" dir="ltr">Protect my digital footprint</span></b></div>
+    <div class="step" data-done="false"><small>المهمة ٤ من ٤<span class="inline-en" lang="en"> · Mission 4 of 4</span></small><b>ألتزم بفعل<span class="en" lang="en" dir="ltr">Commit to an action</span></b></div>
+  </div>
+
+  <section class="mission" id="m1">
+    <p class="mission-label">المهمة ١ من ٤ · Mission 1 of 4</p>
+    <h2>أقرأ الخطر<span class="en" lang="en" dir="ltr">Read the risk</span></h2>
+    <p class="intro">محتوى مضلِّل بصيغ حديثة، منها الهندسة الاجتماعية والتصيّد الإلكتروني، وبعضها يستعين بالذكاء الاصطناعي. اختر التصرف الأنسب.<span class="en" lang="en" dir="ltr">Misleading content in modern forms, including social engineering and phishing, some using AI. Choose the best response.</span></p>
+    <div id="m1-host"></div><div id="m1-result"></div>
+  </section>
+
+  <section class="mission" id="m2">
+    <p class="mission-label">المهمة ٢ من ٤ · Mission 2 of 4</p>
+    <h2>أتحقق قبل أن أفتح<span class="en" lang="en" dir="ltr">Verify before I open</span></h2>
+    <p class="intro">اقرأ الرابط أو الملف أو الرمز كما يقرؤه المختص، ثم قرّر.<span class="en" lang="en" dir="ltr">Read the link, file or code the way a specialist does, then decide.</span></p>
+    <div id="m2-host"></div><div id="m2-result"></div>
+    <div class="svcs">
+      <div class="svc"><b>«تحقق»: الروابط والرموز<span class="en" lang="en" dir="ltr">“Tahqaq”: links and codes</span></b><small>فحص الروابط ورموز الاستجابة السريعة (QR) قبل فتحها.<span class="en" lang="en" dir="ltr">Check links and QR codes before opening them.</span></small><a href="https://nca.gov.sa/ar/tahqaq/" target="_blank" rel="noopener">صفحة الخدمة في موقع الهيئة · Service page on the NCA site</a></div>
+      <div class="svc"><b>«تحقق» للملفات<span class="en" lang="en" dir="ltr">“Tahqaq” for files</span></b><small>فحص الملفات قبل فتحها. الخدمة تجريبية بحسب موقع الهيئة.<span class="en" lang="en" dir="ltr">Check files before opening them. The service is a trial, per the NCA site.</span></small><a href="https://nca.gov.sa/ar/services/tahqaq-for-files/" target="_blank" rel="noopener">صفحة الخدمة في موقع الهيئة · Service page on the NCA site</a></div>
+      <div class="svc"><b>الإبلاغ عن مخالفة سيبرانية<span class="en" lang="en" dir="ltr">Report a cybersecurity violation</span></b><small>للإبلاغ عبر القناة الرسمية. الخدمة تجريبية بحسب موقع الهيئة.<span class="en" lang="en" dir="ltr">Report through the official channel. The service is a trial, per the NCA site.</span></small><a href="https://nca.gov.sa/ar/services/report-a-cybersecurity-violation/" target="_blank" rel="noopener">صفحة الخدمة في موقع الهيئة · Service page on the NCA site</a></div>
+    </div>
+    <p class="fineprint">الروابط تفتح مواقع الهيئة الرسمية، وهذه الصفحة لا تفحص أي رابط نيابةً عنك. الأمثلة أعلاه تدريبية ولا تُرسل بياناتك لأحد.<span class="en" lang="en" dir="ltr">The links open the Authority’s official sites; this page does not check any link on your behalf. The examples above are training only and send your data to no one.</span></p>
+  </section>
+
+  <section class="mission" id="m3">
+    <p class="mission-label">المهمة ٣ من ٤ · Mission 3 of 4</p>
+    <h2>أحمي بصمتي الرقمية<span class="en" lang="en" dir="ltr">Protect my digital footprint</span></h2>
+    <p class="intro">كلمات المرور والحسابات والبيانات التي تشاركها، ومنها ما تدخله في أدوات الذكاء الاصطناعي.<span class="en" lang="en" dir="ltr">Passwords, accounts and the data you share, including what you enter into AI tools.</span></p>
+    <div id="m3-host"></div><div id="m3-result"></div>
+  </section>
+
+  <section class="mission" id="m4">
+    <p class="mission-label">المهمة ٤ من ٤ · Mission 4 of 4</p>
+    <h2>ألتزم بفعل<span class="en" lang="en" dir="ltr">Commit to an action</span></h2>
+    <p class="intro">اختر فعلًا واحدًا تبدأ به هذا الأسبوع.<span class="en" lang="en" dir="ltr">Choose one action to start with this week.</span></p>
+    <div class="acts" id="acts" role="radiogroup" aria-label="الفعل الذي ألتزم به (The action I commit to)"></div>
+  </section>
+
+  <section class="summary" id="summary" hidden aria-live="polite">
+    <p class="mission-label">اكتملت المهام · All missions complete</p>
+    <h2>ملخص مشاركتك<span class="en" lang="en" dir="ltr">Your participation summary</span></h2>
+    <ul class="sum-list" id="sum-list"></ul>
+    <p class="sum-pledge" id="sum-pledge"></p>
+    <p class="sum-tags"><span>#وطن_آمن · #لا_تفتح_مجال</span><span>#أتوقف_أتحقق_أبلّغ</span></p>
+    <p class="fineprint">لبدء مشاركة جديدة اضغط «مشاركة جديدة» في أعلى الصفحة.<span class="en" lang="en" dir="ltr">To start a new participation, press “New participation” at the top of the page.</span></p>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-logos">
+      <img src="img/daf-white.png" alt="شعار مدارس دار الفرسان (Dar Al-Forsan Schools logo)">
+      <img src="img/diploma-white.png" alt="شعار قسم الدبلوما (Diploma Section logo)">
+      <span class="nca-chip"><img src="img/nca.png" alt="شعار الهيئة الوطنية للأمن السيبراني (National Cybersecurity Authority logo)"></span>
+    </div>
+    <p class="foot-tags"><span>#آمن</span><span>#لا_تفتح_مجال</span></p>
+    <p class="foot-credit">وسما برنامج «آمن» وحملته من الهيئة الوطنية للأمن السيبراني<span class="en" lang="en" dir="ltr">Hashtags of the Aamn program and its campaign by the National Cybersecurity Authority</span></p>
+    <p class="date-chip foot-date"><span class="dc-ar">نوفمبر <bdi dir="ltr">2026</bdi></span><span class="dc-en" lang="en" dir="ltr">November 2026</span></p>
+    <b>أمن الوطن واجب علينا جميعًا<span class="en" lang="en" dir="ltr">The nation’s security is a duty on all of us</span></b>
+  <p>اللهم احفظ بلادنا من كل شر، وأدم علينا نعمة الأمن والأمان.<span class="en" lang="en" dir="ltr">O Allah, protect our country from all evil, and keep upon us the blessing of security and safety.</span></p>
+  
+  </div>
+</footer>
+
+<script>
+(function () {
+  var AR = function (n) { return String(n).replace(/\d/g, function (d) { return '٠١٢٣٤٥٦٧٨٩'[d]; }); };
+  function $(id) { return document.getElementById(id); }
+  function el(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
+  /* Arabic text with a smaller English line beneath it */
+  function bi(tag, cls, ar, en) { var n = el(tag, cls); n.appendChild(document.createTextNode(ar)); if (en) { var e = el('span', 'en', en); e.setAttribute('lang', 'en'); e.setAttribute('dir', 'ltr'); n.appendChild(e); } return n; }
+  function shuffle(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var k = Math.floor(Math.random() * (i + 1)), t = a[i]; a[i] = a[k]; a[k] = t; } return a; }
+
+  /* بنوك الأسئلة: الخيار الأول في كل مثال هو الصحيح، ويُخلط عند العرض */
+  var BANK = {
+    m1: [
+      { src: 'رسالة صوتية', msg: 'رسالة بصوت أحد معلميك: «أرسل لي الرمز الذي وصلك الآن لإنقاذ حسابك».',
+        opts: ['لا أرسل الرمز لأحد، وأتصل بالمعلم عبر وسيلة أعرفها لأتأكد', 'أرسله، فالصوت مطابق لصوته', 'أرسل نصفه فقط'],
+        good: 'الأصوات يمكن توليدها أو تقليدها بالذكاء الاصطناعي، والرمز الذي يصلك سرّ لا يُعطى لأحد.',
+        bad: 'تشابه الصوت ليس دليلًا. الأنسب هو عدم إرسال الرمز والتحقق عبر وسيلة مستقلة، وإرسال نصفه يساعد المحتال أيضًا.' },
+      { src: 'فيديو متداول', msg: 'فيديو لمسؤول يعلن قرارًا مفاجئًا دون مصدر رسمي، وحركة وجهه تبدو غير طبيعية.',
+        opts: ['أنتظر الإعلان من الجهة الرسمية، وأبحث عن مصدر الفيديو قبل أي مشاركة', 'أنشره فهو يبدو حقيقيًّا', 'أنشره مع علامة استفهام'],
+        good: 'التزييف العميق يصنع مقاطع مقنعة. غياب المصدر الرسمي علامة تستحق التوقف.',
+        bad: 'الأنسب هو انتظار المصدر الرسمي. علامة الاستفهام لا توقف انتشار الشائعة، فالمشاركة مشاركة.' },
+      { src: 'رسالة خاصة', msg: 'منحة دراسية بالخارج: سجّل بياناتك وأرسل صورة هويتك قبل نهاية اليوم.',
+        opts: ['أتحقق من الجهة عبر موقعها الرسمي، ولا أرسل صورة الهوية عبر رسالة', 'أرسلها لئلا تفوتني الفرصة', 'أرسل صورة جواز السفر بدل الهوية'],
+        good: 'المهلة القصيرة وطلب الهوية علامتان شائعتان للاحتيال. الجهات الجادة لا تطلب وثائقك عبر رسالة عابرة.',
+        bad: 'الأنسب هو التحقق من الجهة أولًا. أي وثيقة شخصية تُرسل لمجهول تصبح بيد المحتال.' },
+      { src: 'أداة ذكاء اصطناعي', msg: 'تريد أداة ذكاء اصطناعي لتلخيص ملف فيه أسماء طلاب وأرقام هوياتهم.',
+        opts: ['لا أرفع بيانات شخصية لأي أداة دون إذن وسياسة واضحة، وأحذف الأسماء إن لزم', 'أرفع الملف كاملًا فالأداة موثوقة', 'أرفعه من حسابي الشخصي لأن أحدًا لن يعلم'],
+        good: 'ما تدخله في أداة خارجية قد يخرج عن سيطرتك. حماية بيانات الآخرين مسؤولية لا تُعفيك منها ثقتك بالأداة.',
+        bad: 'الأنسب هو عدم رفع البيانات الشخصية دون إذن. كون أحد لن يعلم لا يغيّر المسؤولية.' },
+      { src: 'حساب مشهور', msg: 'حساب يعد بمبلغ مالي لمن يعيد نشر رسالته ويرسل بياناته.',
+        opts: ['أتجاهله وأبلّغ عن الحساب', 'أعيد النشر فالمبلغ مغرٍ', 'أرسل بياناتي دون إعادة النشر'],
+        good: 'وعود المال مقابل البيانات أسلوب احتيال معروف، والإبلاغ يحمي غيرك.',
+        bad: 'الأنسب هو التجاهل والإبلاغ. إرسال البيانات وحده يكفي ليُستغل.' }
+    ],
+    m2: [
+      { src: 'رابط', msg: 'رسالة تطلب تسجيل الدخول لتفعيل حسابك.', code: 'https://sa-gov.verify-account.top/login',
+        opts: ['النطاق الحقيقي هو verify-account.top، فلا أدخل بياناتي', 'يبدأ بـ https وفيه gov، إذن هو حكومي', 'أفتحه وأتأكد من الصفحة بنفسي'],
+        good: 'اقرأ النطاق من نهايته. المواقع الحكومية السعودية تنتهي عادةً بـ gov.sa، وقفل https لا يثبت صدق الموقع.',
+        bad: 'الأنسب هو قراءة النطاق من نهايته: صاحب الموقع هنا verify-account.top. وفتح الرابط للاطلاع قد يكفي للإضرار.' },
+      { src: 'رمز QR', msg: 'ملصق QR على لوحة إرشادية في ممشى رياضي يعد بإنترنت مجاني، ويبدو ملصقًا فوق ملصق آخر.',
+        opts: ['أفحصه عبر خدمة «تحقق» قبل المسح، وأخبر المسؤول عن الممشى', 'أمسحه فهو في مكان عام مرتّب', 'أمسحه ثم أغلق الصفحة إن لم تعجبني'],
+        good: 'رمز QR يخفي الرابط، ويمكن لصق رمز آخر فوقه. اللصق فوق ملصق آخر علامة تحذير.',
+        bad: 'المسح قد يفتح رابطًا ضارًّا فورًا. الأنسب هو الفحص أولًا، وإغلاق الصفحة بعدها قد يكون متأخرًا.' },
+      { src: 'ملف في مجموعة', msg: 'أرسل زميل ملفًا بهذا الاسم مع عبارة «افتحه بسرعة».', code: 'results_final.pdf.exe',
+        opts: ['الامتداد الأخير exe يعني برنامجًا لا مستندًا، فلا أفتحه وأفحصه أولًا', 'الاسم يحتوي pdf، إذن هو مستند', 'أفتحه على جهاز آخر'],
+        good: 'الامتداد الأخير هو الذي يحدد نوع الملف. وحساب زميلك قد يكون مخترقًا.',
+        bad: 'الأنسب هو قراءة الامتداد الأخير: exe برنامج. تغيير الجهاز لا يزيل الخطر، وقد ينتقل إلى جهاز آخر.' },
+      { src: 'رسالة نصية', msg: 'رسالة: حساب والدك سيُغلق خلال ساعة، اضغط الرابط وأدخل الرمز.', code: 'bit.ly/3xYz',
+        opts: ['الرابط المختصر يخفي وجهته والاستعجال علامة تحذير، فأعرض الرسالة على والدي', 'أضغط بسرعة فالوقت ضيق', 'أدخل الرمز فالرسالة تعرف اسمي'],
+        good: 'الرابط المختصر لا يكشف وجهته، والرمز الذي يصلك لا يُعطى لأحد. اعرض الرسالة على شخص بالغ.',
+        bad: 'الأنسب هو الانتباه لرابط مختصر واستعجال شديد. معرفة الاسم لا تثبت شيئًا، فالبيانات تُسرَّب وتُباع.' },
+      { src: 'بريد إلكتروني', msg: 'بريد من «بوابة المدرسة» يطلب كلمة المرور بالرد عليه.', code: 'من: support@sch00l-portal.net',
+        opts: ['النطاق يستبدل الحرف o بالصفر، والجهات لا تطلب كلمة المرور بالرد', 'اسم البوابة مكتوب فهو حقيقي', 'أرد بجزء من كلمة المرور فقط'],
+        good: 'تشابه الأحرف (o والصفر) حيلة معروفة، وكلمة المرور لا تُرسل في رسالة.',
+        bad: 'الأنسب هو ملاحظة التهجئة المنتحلة وعدم إرسال أي جزء من كلمة المرور.' }
+    ],
+    m3: [
+      { src: 'كلمة المرور', msg: 'أي كلمة مرور هي الأنسب لحسابك المهم؟',
+        opts: ['عبارة طويلة غير مألوفة، ومختلفة عن بقية حساباتي', 'اسمي مع تاريخ ميلادي', 'كلمة واحدة لكل الحسابات كي لا أنساها'],
+        good: 'الطول والتفرّد أهم من التعقيد الظاهري. وتكرار الكلمة يجعل اختراق حساب واحد مفتاحًا لبقية حساباتك.',
+        bad: 'الأنسب هو عبارة طويلة مختلفة لكل حساب. بيانات الاسم والميلاد سهلة التخمين، والتكرار يضاعف الخطر.' },
+      { src: 'التحقق الثنائي', msg: 'ماذا يضيف التحقق الثنائي لحسابك؟',
+        opts: ['عاملًا ثانيًا غير كلمة المرور، فلا تكفي كلمة المرور المسروقة وحدها', 'يمنع نسيان كلمة المرور', 'يمنع وصول أي رسالة مشبوهة'],
+        good: 'العامل الثاني يصعّب الدخول حتى لو سُرقت كلمة المرور. ولا ترسله لأحد يطلبه منك.',
+        bad: 'الأنسب هو أنه يضيف عاملًا ثانيًا للدخول. لا يمنع وصول الرسائل المشبوهة، ولا يغني عن الحذر.' },
+      { src: 'شبكة عامة', msg: 'تريد دخول حسابك البنكي من شبكة واي فاي مفتوحة في مقهى.',
+        opts: ['أؤجل العملية أو أستخدم شبكة بياناتي الشخصية', 'أدخل فالتطبيق يحمي بياناتي', 'أدخل بسرعة ثم أخرج'],
+        good: 'الشبكات المفتوحة قد يراقبها غيرك أو يقلّدها. الأمور المالية تحتاج شبكة موثوقة.',
+        bad: 'الأنسب هو التأجيل أو استخدام شبكة موثوقة. السرعة لا تحمي من المراقبة.' },
+      { src: 'منشور', msg: 'تريد نشر صورة تذكرة سفرك وفيها الرمز المرجعي كاملًا.',
+        opts: ['أخفي الرمز والأرقام أو لا أنشرها', 'أنشرها كما هي', 'أنشرها للأصدقاء المقربين فقط ولا أخفي شيئًا'],
+        good: 'الرمز المرجعي قد يتيح تعديل الحجز أو معرفة بياناتك. وقائمة الأصدقاء لا تضمن بقاء الصورة عندهم.',
+        bad: 'الأنسب هو إخفاء الأرقام أو عدم النشر. حتى الدائرة المحدودة قد تنقلها خارجها.' },
+      { src: 'إشعار تحديث', msg: 'رسالة تقول: تحديث أمني عاجل لجوالك، حمّله من هذا الرابط.',
+        opts: ['أحدّث من إعدادات الجهاز الرسمية لا من رابط في رسالة', 'أضغط الرابط فالتحديث يحمي جهازي', 'أحمّله من أي موقع آخر'],
+        good: 'التحديثات الحقيقية تأتي من إعدادات الجهاز أو المتجر الرسمي. الرابط في رسالة طريقة شائعة لتثبيت برامج ضارة.',
+        bad: 'الأنسب هو التحديث من الإعدادات الرسمية. الموقع الآخر لا يختلف عن الرابط في الخطر.' },
+      { src: 'النسخ الاحتياطي', msg: 'تعطّل جهازك فجأة، وكانت ملفات أعمالك الدراسية محفوظة عليه وحده.',
+        opts: ['نسخة احتياطية حديثة في مكان منفصل عن الجهاز كانت ستنقذها', 'تكفي نسخة ثانية في المجلد نفسه', 'يمكن استرجاع الملفات دائمًا فلا حاجة للنسخ'],
+        good: 'النسخ الاحتياطي يحمي من العطل والفقد وبرامج الفدية. احفظه في مكان منفصل عن الجهاز وحدّثه باستمرار.',
+        bad: 'الأنسب هو نسخة احتياطية حديثة في مكان منفصل. النسخة في المجلد نفسه تضيع مع الجهاز، والاسترجاع غير مضمون دائمًا.' }
+    ]
+  };
+  var EN = {"m1": [{"src": "Voice message", "msg": "A message in one of your teachers’ voices: “Send me the code you just received to save your account.”", "opts": ["I don’t send the code to anyone; I call the teacher by a way I already know to confirm", "I send it; the voice is identical", "I send only half of it"], "good": "Voices can be generated or imitated with AI, and a code sent to you is a secret to give to no one.", "bad": "A similar voice is not proof. Best is not to send the code and to verify through an independent channel; sending half of it still helps the scammer."}, {"src": "Viral video", "msg": "A video of an official announcing a sudden decision, with no official source, and the face moves unnaturally.", "opts": ["I wait for the official announcement and look for the video’s source before sharing anything", "I post it; it looks real", "I post it with a question mark"], "good": "Deepfakes can produce convincing clips. A missing official source is a sign to stop.", "bad": "Best is to wait for the official source. A question mark does not stop a rumour spreading; sharing is sharing."}, {"src": "Private message", "msg": "A scholarship abroad: register your details and send a photo of your ID before the end of today.", "opts": ["I check the organisation on its official website and never send an ID photo in a message", "I send it so I don’t miss the chance", "I send a passport photo instead of the ID"], "good": "A short deadline and a request for your ID are common scam signs. Serious organisations don’t ask for your documents in a passing message.", "bad": "Best is to verify the organisation first. Any personal document sent to a stranger ends up in a scammer’s hands."}, {"src": "AI tool", "msg": "You want an AI tool to summarise a file containing students’ names and ID numbers.", "opts": ["I don’t upload personal data to any tool without permission and a clear policy, and I remove names if needed", "I upload the whole file; the tool is trustworthy", "I upload it from my personal account since nobody will know"], "good": "What you enter into an outside tool may leave your control. Protecting other people’s data is a responsibility that trusting a tool does not remove.", "bad": "Best is not to upload personal data without permission. That nobody will know does not change the responsibility."}, {"src": "Famous account", "msg": "An account promises money to anyone who reposts its message and sends their details.", "opts": ["I ignore it and report the account", "I repost; the money is tempting", "I send my details without reposting"], "good": "Promising money in exchange for data is a well-known scam, and reporting protects others.", "bad": "Best is to ignore and report. Sending your details alone is enough to be exploited."}], "m2": [{"src": "Link", "msg": "A message asks you to sign in to activate your account.", "opts": ["The real domain is verify-account.top, so I don’t enter my details", "It starts with https and contains gov, so it is governmental", "I open it and judge the page myself"], "good": "Read the domain from its end. Saudi government sites usually end in gov.sa, and the https padlock doesn’t prove a site is honest.", "bad": "Best is to read the domain from its end: the real owner here is verify-account.top. Opening a link just to look can be enough to cause harm."}, {"src": "QR code", "msg": "A QR sticker on an information board at a sports walkway promises free internet, and it looks like a sticker placed over another.", "opts": ["I check it with “Tahqaq” before scanning, and tell whoever is responsible for the walkway", "I scan it; it is in a tidy public place", "I scan it and close the page if I don’t like it"], "good": "A QR code hides the link, and another code can be stuck over it. A sticker over another sticker is a warning sign.", "bad": "Scanning may open a harmful link at once. Best is to check first; closing the page afterwards may be too late."}, {"src": "File in a group", "msg": "A classmate sends a file with this name and says “open it fast”.", "opts": ["The last extension, exe, means a program, not a document, so I don’t open it and I check it first", "The name contains pdf, so it is a document", "I open it on another device"], "good": "The last extension decides the file type, and your classmate’s account may be compromised.", "bad": "Best is to read the last extension: exe is a program. Changing device doesn’t remove the risk; it may spread to another device."}, {"src": "Text message", "msg": "A message: your father’s account will be closed within an hour, press the link and enter the code.", "opts": ["A shortened link hides its destination and urgency is a warning sign, so I show the message to my father", "I press quickly; time is short", "I enter the code; the message knows my name"], "good": "A shortened link doesn’t reveal where it goes, and the code you receive is given to no one. Show the message to an adult.", "bad": "Best is to notice two things: a shortened link and extreme urgency. Knowing a name proves nothing; data gets leaked and sold."}, {"src": "Email", "msg": "An email from “the school portal” asks you to reply with your password.", "opts": ["The domain swaps the letter o for a zero, and organisations don’t ask for passwords by reply", "The portal’s name is written, so it is real", "I reply with part of the password only"], "good": "Look-alike characters (o and zero) are a known trick, and a password is never sent in a message.", "bad": "Best is to spot the spoofed spelling and send no part of the password."}], "m3": [{"src": "Password", "msg": "Which password is best for your important account?", "opts": ["A long, unfamiliar phrase, different from my other accounts", "My name with my birth date", "One password for all accounts so I don’t forget it"], "good": "Length and uniqueness matter more than apparent complexity. Reusing a password makes one breached account a key to the rest.", "bad": "Best is a long phrase, different for each account. Name and birth date are easy to guess, and reuse multiplies the risk."}, {"src": "Two-factor verification", "msg": "What does two-factor verification add to your account?", "opts": ["A second factor besides the password, so a stolen password alone isn’t enough", "It stops me forgetting my password", "It prevents any suspicious message from arriving"], "good": "The second factor makes sign-in harder even if the password is stolen. Never send it to anyone who asks.", "bad": "Best is that it adds a second sign-in factor. It doesn’t stop suspicious messages and doesn’t replace caution."}, {"src": "Public network", "msg": "You want to open your bank account from open Wi-Fi in a café.", "opts": ["I postpone the operation or use my own mobile data", "I sign in; the app protects my data", "I sign in quickly and then leave"], "good": "Open networks can be watched or imitated by others. Financial matters need a trusted network.", "bad": "Best is to postpone or use a trusted network. Speed doesn’t protect against monitoring."}, {"src": "Post", "msg": "You want to post a photo of your travel ticket with the full booking reference.", "opts": ["I hide the reference and numbers, or don’t post it", "I post it as it is", "I post it for close friends only and hide nothing"], "good": "The reference may let others change the booking or learn your details. A friends list doesn’t guarantee the photo stays with them.", "bad": "Best is to hide the numbers or not post. Even a limited circle may pass it outside."}, {"src": "Update notice", "msg": "A message says: urgent security update for your phone, download it from this link.", "opts": ["I update from the device’s official settings, not from a link in a message", "I press the link; the update protects my device", "I download it from any other site"], "good": "Real updates come from the device settings or the official store. A link in a message is a common way to install malware.", "bad": "Best is to update from the official settings. The other site is no different from the link in risk."}, {"src": "Backup", "msg": "Your device broke suddenly and your coursework files were stored only on it.", "opts": ["A recent backup kept in a place separate from the device would have saved them", "A second copy in the same folder is enough", "Files can always be recovered, so a backup is unnecessary"], "good": "A backup protects against failure, loss and ransomware. Keep it separate from the device and update it regularly.", "bad": "Best is a recent backup in a separate place. A copy in the same folder is lost with the device, and recovery is never guaranteed."}]};
+  var ACTS_EN = ["Enable two-factor verification on my most important accounts", "Check any suspicious link, QR code or file with “Tahqaq” before opening it", "Not repost a clip or news before verifying its official source", "Replace repeated passwords with long, different phrases", "Teach a family member or a classmate how to verify"];
+  var ACTS = [
+    'أفعّل التحقق الثنائي في أهم حساباتي',
+    'أفحص أي رابط أو رمز QR أو ملف مشبوه عبر «تحقق» قبل فتحه',
+    'لا أعيد نشر مقطع أو خبر قبل التحقق من مصدره الرسمي',
+    'أستبدل كلمات المرور المكررة بعبارات طويلة مختلفة',
+    'أعلّم فردًا من أسرتي أو زميلًا طريقة التحقق'
+  ];
+  var TITLES = { m1: ['أقرأ الخطر', 'Read the risk'], m2: ['أتحقق قبل أن أفتح', 'Verify before I open'], m3: ['أحمي بصمتي', 'Protect my footprint'] };
+  var KIND = { m1: ['موقف', 'Situation'], m2: ['مثال', 'Example'], m3: ['سؤال', 'Question'] };
+  var PROMPT = { m1: ['ما تصرّفك؟', 'What would you do?'], m2: ['ما العلامة أو القرار الصحيح؟', 'What is the right sign or decision?'], m3: ['ما الخيار الأنسب؟', 'Which option is best?'] };
+
+  var deck = {}, ans = {}, act = null, lastIds = {};
+
+  function deal() {
+    ['m1', 'm2', 'm3'].forEach(function (m) {
+      var n = BANK[m].length, prev = lastIds[m] || [];
+      var fresh = [], used = [];
+      for (var i = 0; i < n; i++) (prev.indexOf(i) === -1 ? fresh : used).push(i);
+      var ids = shuffle(fresh).concat(shuffle(used)).slice(0, 3);
+      lastIds[m] = ids;
+      var slots = shuffle([0, 1, 2]);                 // موضع الإجابة الصحيحة يختلف من سؤال لآخر
+      deck[m] = ids.map(function (id, k) {
+        var it = BANK[m][id], order = shuffle([1, 2]), perm = [];
+        for (var d = 0; d < 3; d++) perm.push(d === slots[k] ? 0 : order.shift());
+        return { it: it, en: EN[m][id], perm: perm, correct: slots[k] };
+      });
+    });
+    ans = { m1: {}, m2: {}, m3: {} }; act = null;
+  }
+
+  function renderMission(m) {
+    var host = $(m + '-host'); host.textContent = '';
+    deck[m].forEach(function (d, idx) {
+      var card = el('div', 'scenario');
+      card.appendChild(el('span', 'num', KIND[m][0] + ' ' + AR(idx + 1) + ' من ' + AR(deck[m].length) + ' · ' + KIND[m][1] + ' ' + (idx + 1) + ' of ' + deck[m].length));
+      var box = el('div', 'msg'); box.appendChild(el('span', 'src', d.it.src + ' · ' + d.en.src)); box.appendChild(bi('q', null, d.it.msg, d.en.msg));
+      if (d.it.code) box.appendChild(el('code', 'code', d.it.code));
+      card.appendChild(box); card.appendChild(bi('p', 'prompt', PROMPT[m][0], PROMPT[m][1]));
+      var picked = ans[m][idx], done = picked !== undefined, ch = el('div', 'choices');
+      d.perm.forEach(function (src, i) {
+        var b = el('button', 'choice'); b.type = 'button'; b.disabled = done; b.appendChild(bi('span', 'tx', d.it.opts[src], d.en.opts[src]));
+        if (done) b.classList.add(i === d.correct ? 'is-good' : i === picked ? 'is-bad' : 'is-dim');
+        b.addEventListener('click', function () { ans[m][idx] = i; renderMission(m); refresh(); });
+        ch.appendChild(b);
+      });
+      card.appendChild(ch);
+      if (done) { var ok1 = picked === d.correct, f = el('div', 'feedback'); f.setAttribute('role', 'status');
+        f.appendChild(bi('p', null, (ok1 ? 'قرار سليم. ' : 'يمكن أفضل. ') + (ok1 ? d.it.good : d.it.bad), (ok1 ? 'Sound decision. ' : 'Could be better. ') + (ok1 ? d.en.good : d.en.bad))); card.appendChild(f); }
+      host.appendChild(card);
+    });
+    var res = $(m + '-result'); res.textContent = '';
+    if (Object.keys(ans[m]).length === deck[m].length) {
+      var ok = score(m), r = el('div', 'result');
+      r.appendChild(bi('b', null, 'أصبتَ في ' + AR(ok) + ' من ' + AR(deck[m].length), 'You got ' + ok + ' of ' + deck[m].length + ' right'));
+      r.appendChild(bi('p', null, 'القاعدة المشتركة: أتوقف، أتحقق من المصدر، ثم أقرر.', 'The shared rule: stop, verify the source, then decide.'));
+      var rb = el('button', 'link-btn', 'أعد هذه المهمة · Retry this mission'); rb.type = 'button';
+      rb.addEventListener('click', function () { ans[m] = {}; renderMission(m); refresh(); });
+      r.appendChild(rb); res.appendChild(r);
+    }
+  }
+  function score(m) { var n = 0; deck[m].forEach(function (d, i) { if (ans[m][i] === d.correct) n++; }); return n; }
+
+  function renderActs() {
+    var box = $('acts'); box.textContent = '';
+    ACTS.forEach(function (t, i) {
+      var b = el('button', 'choice act'); b.type = 'button'; b.appendChild(bi('span', 'tx', t, ACTS_EN[i])); b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', act === i ? 'true' : 'false');
+      if (act === i) b.classList.add('is-good');
+      b.addEventListener('click', function () { act = i; renderActs(); refresh(); });
+      box.appendChild(b);
+    });
+  }
+
+  function refresh() {
+    var done = ['m1', 'm2', 'm3'].map(function (m) { return Object.keys(ans[m]).length === deck[m].length; }).concat([act !== null]);
+    var steps = document.querySelectorAll('#progress .step');
+    for (var i = 0; i < steps.length; i++) steps[i].setAttribute('data-done', done[i] ? 'true' : 'false');
+    var all = done.every(Boolean), sm = $('summary'), was = sm.hidden;
+    sm.hidden = !all;
+    if (!all) return;
+    var list = $('sum-list'); list.textContent = '';
+    ['m1', 'm2', 'm3'].forEach(function (m) {
+      var li = el('li'); li.appendChild(bi('span', null, TITLES[m][0], TITLES[m][1])); li.appendChild(bi('b', null, AR(score(m)) + ' من ' + AR(deck[m].length), score(m) + ' of ' + deck[m].length)); list.appendChild(li);
+    });
+    var sp = $('sum-pledge'); sp.textContent = ''; sp.appendChild(bi('span', null, 'التزامي: ' + ACTS[act], 'My commitment: ' + ACTS_EN[act]));
+    if (was) { try { sm.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); } catch (e) {} }
+  }
+
+  var tt = null;
+  $('reset-btn').addEventListener('click', function () {
+    deal(); ['m1', 'm2', 'm3'].forEach(renderMission); renderActs(); refresh();
+    try { window.scrollTo(0, 0); } catch (e) {}
+    var t = $('toast'); var tb = $('toast-text'); tb.textContent = ''; tb.appendChild(bi('span', null, 'تم مسح الاختيارات وتبديل الأسئلة. الصفحة جاهزة لمشاركة جديدة.', 'Answers cleared and questions swapped. Ready for a new participation.')); t.hidden = false;
+    clearTimeout(tt); tt = setTimeout(function () { t.hidden = true; }, 5000);
+  });
+
+  deal(); ['m1', 'm2', 'm3'].forEach(renderMission); renderActs(); refresh();
+
+  /* معرض ملصقات آمن: يتحرك تلقائيًّا دائمًا، مع زر إيقاف */
+  (function () {
+    var car = $('carousel'); if (!car) return;
+    var slides = car.querySelectorAll('.slide'), box = $('c-dots'), count = $('c-count'), pb = $('c-pause');
+    var cur = 0, timer = null, playing = true, held = false, dots = [];
+    for (var i = 0; i < slides.length; i++) (function (i) {
+      var b = el('button', 'c-dot'); b.type = 'button'; b.setAttribute('aria-label', 'الانتقال إلى الملصق ' + AR(i + 1) + ' (Go to poster ' + (i + 1) + ')');
+      b.addEventListener('click', function () { show(i); restart(); }); box.appendChild(b); dots.push(b);
+    })(i);
+    function show(n) {
+      cur = (n + slides.length) % slides.length;
+      for (var i = 0; i < slides.length; i++) { slides[i].classList.toggle('is-active', i === cur); dots[i].setAttribute('aria-current', i === cur ? 'true' : 'false'); }
+      count.textContent = AR(cur + 1) + ' / ' + AR(slides.length);
+    }
+    function stop() { clearInterval(timer); timer = null; }
+    function start() { stop(); if (playing && !held) timer = setInterval(function () { show(cur + 1); }, 5000); }
+    function restart() { start(); }
+    function label() { pb.textContent = playing ? 'إيقاف · Pause' : 'تشغيل · Play'; pb.setAttribute('aria-pressed', playing ? 'false' : 'true'); }
+    $('c-prev').addEventListener('click', function () { show(cur - 1); restart(); });
+    $('c-next').addEventListener('click', function () { show(cur + 1); restart(); });
+    pb.addEventListener('click', function () { playing = !playing; label(); start(); });
+    car.addEventListener('mouseenter', function () { held = true; start(); });
+    car.addEventListener('mouseleave', function () { held = false; start(); });
+    car.addEventListener('keydown', function (e) { if (e.key === 'ArrowLeft') { show(cur + 1); restart(); } else if (e.key === 'ArrowRight') { show(cur - 1); restart(); } });
+    var x0 = null;
+    car.addEventListener('pointerdown', function (e) { x0 = e.clientX; });
+    car.addEventListener('pointerup', function (e) { if (x0 === null) return; var dx = e.clientX - x0; x0 = null; if (Math.abs(dx) > 40) { show(cur + (dx < 0 ? 1 : -1)); restart(); } });
+    document.addEventListener('visibilitychange', function () { if (document.hidden) stop(); else start(); });
+    show(0); label(); start();
+  })();
+})();
+</script>
+</body>
+</html>
