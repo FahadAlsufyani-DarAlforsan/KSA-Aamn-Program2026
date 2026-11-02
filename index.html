@@ -94,6 +94,8 @@ h2 .en { font-size: .52em; font-weight: 600; margin-top: 0; font-family: var(--f
 .tag { color: #9BE7C0; font-family: var(--font-display); }
 .date-chip { display: inline-flex; align-items: center; gap: 10px; margin: 14px auto 0; padding: 4px 18px; border-radius: 999px; background: var(--dp-grad); color: #fff; font-family: var(--font-display); font-weight: 800; font-size: 1.05rem; line-height: 1.6; box-shadow: 0 0 14px rgba(155,99,214,.35); }
 .date-chip .dc-en { font-weight: 600; font-size: .85em; opacity: .92; padding-inline-start: 10px; border-inline-start: 1px solid rgba(255,255,255,.55); }
+.credit.principal { grid-column: 1 / -1; border-top-width: 4px; background: rgba(255,255,255,.1); padding-block: 12px; }
+.credit.principal b { font-size: 1.1rem; }
 .credits { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 16px; text-align: center; }
 .credit { padding: 8px 12px; border: 1px solid rgba(242,247,243,.28); border-top: 3px solid transparent; border-image: var(--dp-grad) 1; background: rgba(255,255,255,.05); }
 .credit b { font-family: var(--font-display); font-size: .98rem; font-weight: 700; line-height: 1.5; display: block; }
@@ -246,6 +248,7 @@ main section { position: relative; isolation: isolate; margin-top: 34px; }
     <p class="date-chip"><span class="dc-ar">نوفمبر <bdi dir="ltr">2026</bdi></span><span class="dc-en" lang="en" dir="ltr">November 2026</span></p>
     <p class="years"><span dir="ltr">1448 - 1449</span> هـ <span class="sep">|</span> <span dir="ltr">2026 - 2027</span> م<span class="en" lang="en" dir="ltr">1448–1449 AH · 2026–2027 CE</span></p>
     <div class="credits" role="list" aria-label="الإشراف والتنفيذ (Supervision and implementation)">
+      <div class="credit principal" role="listitem"><b>مدير المدرسة</b><span class="en" lang="en" dir="ltr">School Principal</span></div>
       <div class="credit" role="listitem"><b>الإشراف الأكاديمي للقسم</b><span class="en" lang="en" dir="ltr">Academic supervision of the section</span></div>
       <div class="credit" role="listitem"><b>وكيل شؤون الطلاب للقسم</b><span class="en" lang="en" dir="ltr">Student affairs deputy of the section</span></div>
       <div class="credit" role="listitem"><b>تنفيذ شعبة علوم الحاسوب للقسم</b><span class="en" lang="en" dir="ltr">Implemented by the Computer Science division of the section</span></div>
