@@ -133,7 +133,7 @@ main section { position: relative; isolation: isolate; margin-top: 34px; }
 /* شعار النخلة والسيفين بخطوط باهتة خلف كل سؤال */
 .scenario, .acts { position: relative; isolation: isolate; }
 .scenario::before, .acts::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: var(--dp-purple); opacity: .07;
-  -webkit-mask: url("img/emblem-outline.png") center / auto min(260px, 85%) no-repeat; mask: url("img/emblem-outline.png") center / auto min(260px, 85%) no-repeat; }
+  -webkit-mask: url("emblem-outline.png") center / auto min(260px, 85%) no-repeat; mask: url("emblem-outline.png") center / auto min(260px, 85%) no-repeat; }
 .mission-label { font-size: .85rem; font-weight: 700; color: var(--dp-purple); letter-spacing: .03em; }
 .intro { color: var(--muted); margin-top: 6px; max-width: 40em; }
 .scenario { margin-top: 18px; padding-top: 14px; border-top: 1px dashed var(--line); }
@@ -206,7 +206,7 @@ main section { position: relative; isolation: isolate; margin-top: 34px; }
 /* التذييل: شريط داكن بشعارات بيضاء وعلامة مائية */
 .foot { text-align: center; font-size: .95rem; position: relative; isolation: isolate; overflow: hidden; margin-top: 40px; background: var(--hero-bg); color: var(--hero-fg); padding: 34px 16px 46px; }
 .foot::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: #fff; opacity: .1;
-  -webkit-mask: url("img/emblem-outline.png") center / auto min(300px, 90%) no-repeat; mask: url("img/emblem-outline.png") center / auto min(300px, 90%) no-repeat; }
+  -webkit-mask: url("emblem-outline.png") center / auto min(300px, 90%) no-repeat; mask: url("emblem-outline.png") center / auto min(300px, 90%) no-repeat; }
 .foot-logos { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 18px clamp(22px, 6vw, 56px); }
 .foot-logos img { height: clamp(64px, 14vw, 88px); width: auto; display: block; }
 .nca-chip { display: inline-flex; align-items: center; background: #fff; border-radius: 10px; padding: 8px 14px; }
@@ -235,14 +235,14 @@ main section { position: relative; isolation: isolate; margin-top: 34px; }
 <div class="toast" id="toast" hidden role="status" aria-live="polite"><div class="toast-box" id="toast-text"></div></div>
 
 <div class="brand-band"><div class="wrap brand-row">
-  <img src="img/daf.png" alt="شعار مدارس دار الفرسان: نفكر، نتأمل، نتعلم">
-  <img src="img/diploma-logo.png" alt="شعار قسم الدبلوما (Diploma Section logo)">
+  <img src="daf.png" alt="شعار مدارس دار الفرسان: نفكر، نتأمل، نتعلم">
+  <img src="diploma-logo.png" alt="شعار قسم الدبلوما (Diploma Section logo)">
 </div></div>
 
 <header class="hero"><div class="wrap">
   <span class="eyebrow">قسم الدبلوما · Diploma Section</span>
   <div class="title-block">
-    <img class="emblem-bg" src="img/emblem-outline.png" alt="" aria-hidden="true">
+    <img class="emblem-bg" src="emblem-outline.png" alt="" aria-hidden="true">
     <h1 class="title">مبادرة قسم الدبلوما<br>للوعي السيبراني والفكري الوطني<span class="en" lang="en" dir="ltr">Diploma Section Initiative for Cyber and National Intellectual Awareness</span></h1>
     <p class="occasion">تزامنًا مع «الحملة الوطنية للتوعية بالأمن السيبراني» في «الشهر العالمي للتوعية بالأمن السيبراني» (أكتوبر من كل عام)، التي أُطلقت <a href="https://sabq.org/article/0ya76yx" target="_blank" rel="noopener">نسختها السادسة</a> في 1 أكتوبر 2026، وتفعيل تحويل العملية التعليمية إلى <b class="tag">#التعليم_عن_بعد</b><span class="en" lang="en" dir="ltr">In conjunction with the National Cybersecurity Awareness Campaign during Global Cybersecurity Awareness Month (every October), whose <a href="https://sabq.org/article/0ya76yx" target="_blank" rel="noopener">sixth edition</a> launched on 1 October 2026, and activating the shift of the educational process to remote learning (<bdi>#التعليم_عن_بعد</bdi>).</span></p>
     <p class="date-chip"><span class="dc-ar">نوفمبر <bdi dir="ltr">2026</bdi></span><span class="dc-en" lang="en" dir="ltr">November 2026</span></p>
@@ -272,17 +272,17 @@ main section { position: relative; isolation: isolate; margin-top: 34px; }
     <h2>#وطن_آمن · #لا_تفتح_مجال<span class="en" lang="en" dir="ltr">Posters of the Aamn program</span></h2>
     <p class="intro">ملصقات برنامج «آمن» للتوعية بالأمن السيبراني، تتحرك تلقائيًّا. اضغط السهمين للتنقل.<span class="en" lang="en" dir="ltr">Posters of the “Aamn” cybersecurity awareness program, moving automatically. Use the arrows to browse.</span></p>
     <div class="carousel" id="carousel" role="region" aria-roledescription="carousel" aria-label="ملصقات آمن (Aamn posters)" tabindex="0">
-<div class="slide is-active"><img class="bg" src="img/n1.jpg" alt="" aria-hidden="true"><img class="fg" src="img/n1.jpg" alt="ملصق «آمن»: تحديث الأجهزة سدّ لثغراتها وتعزيز لحمايتها (Aamn poster: Updating devices closes their gaps and strengthens their protection)"></div>
-<div class="slide"><img class="bg" src="img/n2.jpg" alt="" aria-hidden="true"><img class="fg" src="img/n2.jpg" alt="ملصق «آمن»: لا تفتح كل أبوابك بمفتاح واحد: كلمة مرور قوية ومختلفة لكل حساب (Aamn poster: Don’t open all your doors with one key: a strong, different password for each account)" loading="lazy"></div>
-<div class="slide"><img class="bg" src="img/n3.jpg" alt="" aria-hidden="true"><img class="fg" src="img/n3.jpg" alt="ملصق «آمن»: وعيٌ يسبق التفاعل: تأكد من موثوقية الروابط والملفات ورموز الاستجابة السريعة عبر «تحقق» (Aamn poster: Awareness before interaction: verify links, files and QR codes with “Tahqaq”)" loading="lazy"></div>
-<div class="slide"><img class="bg" src="img/n4.jpg" alt="" aria-hidden="true"><img class="fg" src="img/n4.jpg" alt="ملصق «آمن»: الرابط خطوة والتحقق يسبقها عبر «تحقق» (Aamn poster: A link is a step, and verification comes before it, with “Tahqaq”)" loading="lazy"></div>
-<div class="slide"><img class="bg" src="img/n5.jpg" alt="" aria-hidden="true"><img class="fg" src="img/n5.jpg" alt="ملصق «آمن»: حفظًا لأمنك السيبراني: تحقق من موثوقية رموز الاستجابة السريعة (Aamn poster: To protect your cybersecurity: verify QR codes)" loading="lazy"></div>
-<div class="slide"><img class="bg" src="img/n6.jpg" alt="" aria-hidden="true"><img class="fg" src="img/n6.jpg" alt="ملصق «آمن»: تحقق قبل التجاوب مع رموز الاستجابة السريعة (QR) (Aamn poster: Verify before responding to QR codes)" loading="lazy"></div>
-<div class="slide"><img class="bg" src="img/n7.jpg" alt="" aria-hidden="true"><img class="fg" src="img/n7.jpg" alt="ملصق «آمن»: بإمكانك الآن التأكد من موثوقية الرابط أو الملف أو الرمز عبر «تحقق» (Aamn poster: You can now verify a link, file or code with “Tahqaq”)" loading="lazy"></div>
-<div class="slide"><img class="bg" src="img/n8.jpg" alt="" aria-hidden="true"><img class="fg" src="img/n8.jpg" alt="ملصق «آمن»: فحص الملفات ممارسة استباقية تعزز أمنك السيبراني (Aamn poster: Checking files is a proactive practice that strengthens your cybersecurity)" loading="lazy"></div>
-<div class="slide"><img class="bg" src="img/n9.jpg" alt="" aria-hidden="true"><img class="fg" src="img/n9.jpg" alt="ملصق «آمن»: فحص الملفات خطوة استباقية تعزز الأمان (Aamn poster: Checking files is a proactive step that strengthens safety)" loading="lazy"></div>
-<div class="slide"><img class="bg" src="img/n10.jpg" alt="" aria-hidden="true"><img class="fg" src="img/n10.jpg" alt="ملصق «آمن»: الرقابة الأبوية حماية للأطفال (Aamn poster: Parental controls protect children)" loading="lazy"></div>
-<div class="slide"><img class="bg" src="img/n11.jpg" alt="" aria-hidden="true"><img class="fg" src="img/n11.jpg" alt="ملصق «آمن»: أجهزة ذكية في المنزل تتطلب حماية مستمرة (Aamn poster: Smart devices at home need continuous protection)" loading="lazy"></div>
+<div class="slide is-active"><img class="bg" src="n1.jpg" alt="" aria-hidden="true"><img class="fg" src="n1.jpg" alt="ملصق «آمن»: تحديث الأجهزة سدّ لثغراتها وتعزيز لحمايتها (Aamn poster: Updating devices closes their gaps and strengthens their protection)"></div>
+<div class="slide"><img class="bg" src="n2.jpg" alt="" aria-hidden="true"><img class="fg" src="n2.jpg" alt="ملصق «آمن»: لا تفتح كل أبوابك بمفتاح واحد: كلمة مرور قوية ومختلفة لكل حساب (Aamn poster: Don’t open all your doors with one key: a strong, different password for each account)" loading="lazy"></div>
+<div class="slide"><img class="bg" src="n3.jpg" alt="" aria-hidden="true"><img class="fg" src="n3.jpg" alt="ملصق «آمن»: وعيٌ يسبق التفاعل: تأكد من موثوقية الروابط والملفات ورموز الاستجابة السريعة عبر «تحقق» (Aamn poster: Awareness before interaction: verify links, files and QR codes with “Tahqaq”)" loading="lazy"></div>
+<div class="slide"><img class="bg" src="n4.jpg" alt="" aria-hidden="true"><img class="fg" src="n4.jpg" alt="ملصق «آمن»: الرابط خطوة والتحقق يسبقها عبر «تحقق» (Aamn poster: A link is a step, and verification comes before it, with “Tahqaq”)" loading="lazy"></div>
+<div class="slide"><img class="bg" src="n5.jpg" alt="" aria-hidden="true"><img class="fg" src="n5.jpg" alt="ملصق «آمن»: حفظًا لأمنك السيبراني: تحقق من موثوقية رموز الاستجابة السريعة (Aamn poster: To protect your cybersecurity: verify QR codes)" loading="lazy"></div>
+<div class="slide"><img class="bg" src="n6.jpg" alt="" aria-hidden="true"><img class="fg" src="n6.jpg" alt="ملصق «آمن»: تحقق قبل التجاوب مع رموز الاستجابة السريعة (QR) (Aamn poster: Verify before responding to QR codes)" loading="lazy"></div>
+<div class="slide"><img class="bg" src="n7.jpg" alt="" aria-hidden="true"><img class="fg" src="n7.jpg" alt="ملصق «آمن»: بإمكانك الآن التأكد من موثوقية الرابط أو الملف أو الرمز عبر «تحقق» (Aamn poster: You can now verify a link, file or code with “Tahqaq”)" loading="lazy"></div>
+<div class="slide"><img class="bg" src="n8.jpg" alt="" aria-hidden="true"><img class="fg" src="n8.jpg" alt="ملصق «آمن»: فحص الملفات ممارسة استباقية تعزز أمنك السيبراني (Aamn poster: Checking files is a proactive practice that strengthens your cybersecurity)" loading="lazy"></div>
+<div class="slide"><img class="bg" src="n9.jpg" alt="" aria-hidden="true"><img class="fg" src="n9.jpg" alt="ملصق «آمن»: فحص الملفات خطوة استباقية تعزز الأمان (Aamn poster: Checking files is a proactive step that strengthens safety)" loading="lazy"></div>
+<div class="slide"><img class="bg" src="n10.jpg" alt="" aria-hidden="true"><img class="fg" src="n10.jpg" alt="ملصق «آمن»: الرقابة الأبوية حماية للأطفال (Aamn poster: Parental controls protect children)" loading="lazy"></div>
+<div class="slide"><img class="bg" src="n11.jpg" alt="" aria-hidden="true"><img class="fg" src="n11.jpg" alt="ملصق «آمن»: أجهزة ذكية في المنزل تتطلب حماية مستمرة (Aamn poster: Smart devices at home need continuous protection)" loading="lazy"></div>
       <button class="c-btn c-prev" id="c-prev" type="button" aria-label="الملصق السابق (Previous poster)">›</button>
       <button class="c-btn c-next" id="c-next" type="button" aria-label="الملصق التالي (Next poster)">‹</button>
       <div class="c-bar"><div class="c-dots" id="c-dots"></div><span class="c-count" id="c-count"></span><button class="c-pause" id="c-pause" type="button">إيقاف · Pause</button></div>
@@ -365,9 +365,9 @@ main section { position: relative; isolation: isolate; margin-top: 34px; }
 <footer class="foot">
   <div class="wrap">
     <div class="foot-logos">
-      <img src="img/daf-white.png" alt="شعار مدارس دار الفرسان (Dar Al-Forsan Schools logo)">
-      <img src="img/diploma-white.png" alt="شعار قسم الدبلوما (Diploma Section logo)">
-      <span class="nca-chip"><img src="img/nca.png" alt="شعار الهيئة الوطنية للأمن السيبراني (National Cybersecurity Authority logo)"></span>
+      <img src="daf-white.png" alt="شعار مدارس دار الفرسان (Dar Al-Forsan Schools logo)">
+      <img src="diploma-white.png" alt="شعار قسم الدبلوما (Diploma Section logo)">
+      <span class="nca-chip"><img src="nca.png" alt="شعار الهيئة الوطنية للأمن السيبراني (National Cybersecurity Authority logo)"></span>
     </div>
     <p class="foot-tags"><span>#آمن</span><span>#لا_تفتح_مجال</span></p>
     <p class="foot-credit">وسما برنامج «آمن» وحملته من الهيئة الوطنية للأمن السيبراني<span class="en" lang="en" dir="ltr">Hashtags of the Aamn program and its campaign by the National Cybersecurity Authority</span></p>
